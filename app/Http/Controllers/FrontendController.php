@@ -20,4 +20,24 @@ class FrontendController extends Controller
     {
         return view('Frontend.benefits');
     }
+
+    public function guidelines()
+    {
+        return view('Frontend.guidelines');
+    }
+
+    public function faq()
+    {
+        return view('Frontend.faq');
+    }
+
+    public function register()
+    {
+        return view('Frontend.register');
+    }
+
+    public function login()
+    {
+        return view('Frontend.login');
+    }
 }
