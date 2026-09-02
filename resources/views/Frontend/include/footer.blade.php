@@ -68,7 +68,7 @@
                             <span>অফিস: ঢাকা, বাংলাদেশ।</span>
                         </p>
                         <div class="pt-2">
-                            <a href="#" class="inline-block px-4 py-2 bg-emerald-800 hover:bg-emerald-700 text-white text-xs font-semibold rounded-lg transition shadow">
+                            <a href="{{url('/admin/login')}}" class="inline-block px-4 py-2 bg-emerald-800 hover:bg-emerald-700 text-white text-xs font-semibold rounded-lg transition shadow">
                                 এডমিন পোর্টাল লগইন
                             </a>
                         </div>

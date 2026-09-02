@@ -34,9 +34,9 @@
 
                 <!-- Auth Buttons -->
                 <div class="flex items-center space-x-4">
-                    <a href="{{ url('/login') }}"
+                    <a href="{{ url('/Drivers-login') }}"
                         class="px-4 py-2 text-emerald-800 bg-emerald-50 hover:bg-emerald-100 font-medium rounded-lg transition">লগইন</a>
-                    <a href="{{ url('/register') }}"
+                    <a href="{{ url('/drivers-register') }}"
                         class="px-5 py-2.5 bg-amber-500 hover:bg-amber-600 text-white font-medium rounded-lg shadow transition">রেজিষ্টার
                         করুন</a>
                 </div>
