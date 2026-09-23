@@ -27,18 +27,29 @@
                     চালকের নতুন অ্যাকাউন্ট
                 </h2>
                 <p class="text-xs sm:text-sm text-slate-300">
-                    স্মার্ট ডিজিটাল লাইসেন্স পাওয়ার জন্য আপনার সঠিক তথ্য দিয়ে রেজিস্ট্রেশন করুন।
+                    স্মার্ট ডিজিটাল লাইসেন্স পাওয়ার জন্য আপনার সঠিক তথ্য দিয়ে রেজিস্ট্রেশন করুন।
                 </p>
             </div>
 
+            <!-- Validation Errors Show করার জন্য (যদি থাকে) -->
+            @if ($errors->any())
+                <div class="mb-4 p-3 bg-red-500/20 border border-red-500 rounded-xl text-red-200 text-xs">
+                    <ul class="list-disc pl-4 space-y-1">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
             <!-- Registration Form -->
-            <form action="#" method="POST" class="space-y-4">
+            <form action="{{ route('driver.register.submit') }}" method="POST" class="space-y-4">
                 @csrf
                 
                 <!-- Full Name -->
                 <div>
                     <label class="block text-xs font-medium text-slate-200 mb-1 px-1">চালকের পূর্ণ নাম</label>
-                    <input type="text" name="name" required
+                    <input type="text" name="name" value="{{ old('name') }}" required
                         class="w-full px-4 py-3 bg-[#0D2924] border border-white/15 rounded-xl text-white text-sm placeholder-slate-400 focus:ring-2 focus:ring-emerald-500/30 focus:border-emerald-500 transition"
                         placeholder="যেমন: মো. রফিকুল ইসলাম">
                 </div>
@@ -46,15 +57,15 @@
                 <!-- Mobile Number -->
                 <div>
                     <label class="block text-xs font-medium text-slate-200 mb-1 px-1">মোবাইল নম্বর</label>
-                    <input type="text" name="phone" required
+                    <input type="text" name="phone" value="{{ old('phone') }}" required
                         class="w-full px-4 py-3 bg-[#0D2924] border border-white/15 rounded-xl text-white text-sm placeholder-slate-400 focus:ring-2 focus:ring-emerald-500/30 focus:border-emerald-500 transition"
                         placeholder="যেমন: 01700000000">
                 </div>
 
                 <!-- NID Number -->
                 <div>
-                    <label class="block text-xs font-medium text-slate-200 mb-1 px-1">জাতীয় পরিচয়পত্র (NID) নম্বর</label>
-                    <input type="text" name="nid" required
+                    <label class="block text-xs font-medium text-slate-200 mb-1 px-1">জাতীয় পরিচয়পত্র (NID) নম্বর</label>
+                    <input type="text" name="nid" value="{{ old('nid') }}" required
                         class="w-full px-4 py-3 bg-[#0D2924] border border-white/15 rounded-xl text-white text-sm placeholder-slate-400 focus:ring-2 focus:ring-emerald-500/30 focus:border-emerald-500 transition"
                         placeholder="NID নম্বর বা স্মার্ট কার্ড নম্বর">
                 </div>
@@ -62,15 +73,15 @@
                 <!-- Vehicle Type & Number -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-xs font-medium text-slate-200 mb-1 px-1">গাড়ির ধরন</label>
+                        <label class="block text-xs font-medium text-slate-200 mb-1 px-1">গাড়ির ধরন</label>
                         <select name="vehicle_type" class="w-full px-4 py-3 bg-[#0D2924] border border-white/15 rounded-xl text-white text-sm focus:ring-2 focus:ring-emerald-500/30 focus:border-emerald-500 transition">
-                            <option value="easy_bike" class="bg-[#0D2924]">ইজি বাইক</option>
-                            <option value="auto_rickshaw" class="bg-[#0D2924]">অটোরিকশা</option>
+                            <option value="easy_bike" class="bg-[#0D2924]" {{ old('vehicle_type') == 'easy_bike' ? 'selected' : '' }}>ইজি বাইক</option>
+                            <option value="auto_rickshaw" class="bg-[#0D2924]" {{ old('vehicle_type') == 'auto_rickshaw' ? 'selected' : '' }}>অটোরিকশা</option>
                         </select>
                     </div>
                     <div>
-                        <label class="block text-xs font-medium text-slate-200 mb-1 px-1">ভেহিকেল/গাড়ি নম্বর</label>
-                        <input type="text" name="vehicle_no" required
+                        <label class="block text-xs font-medium text-slate-200 mb-1 px-1">ভেহিকেল/গাড়ি নম্বর</label>
+                        <input type="text" name="vehicle_no" value="{{ old('vehicle_no') }}" required
                             class="w-full px-4 py-3 bg-[#0D2924] border border-white/15 rounded-xl text-white text-sm placeholder-slate-400 focus:ring-2 focus:ring-emerald-500/30 focus:border-emerald-500 transition"
                             placeholder="যেমন: GZP-1234">
                     </div>
@@ -78,10 +89,10 @@
 
                 <!-- Password -->
                 <div>
-                    <label class="block text-xs font-medium text-slate-200 mb-1 px-1">পাসওয়ার্ড</label>
+                    <label class="block text-xs font-medium text-slate-200 mb-1 px-1">পাসওয়ার্ড</label>
                     <input type="password" name="password" required
                         class="w-full px-4 py-3 bg-[#0D2924] border border-white/15 rounded-xl text-white text-sm placeholder-slate-400 focus:ring-2 focus:ring-emerald-500/30 focus:border-emerald-500 transition"
-                        placeholder="কমপক্ষে ৬ ডিজিটের পাসওয়ার্ড">
+                        placeholder="কমপক্ষে ৬ ডিজিটের পাসওয়ার্ড">
                 </div>
 
                 <!-- Submit Button -->
@@ -99,7 +110,7 @@
 
             <!-- Footer Text -->
             <div class="text-center text-[11px] text-slate-400 mt-6 pt-4 border-t border-white/10">
-                © copyright © 2026 License BD - অটো লাইসেন্স বিডি
+                © copyright 2026 License BD - অটো লাইসেন্স বিডি
             </div>
 
         </div>

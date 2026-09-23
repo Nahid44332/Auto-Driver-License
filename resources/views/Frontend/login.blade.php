@@ -32,7 +32,7 @@
             </div>
 
             <!-- Login Form -->
-            <form action="#" method="POST" class="space-y-4">
+            <form action="{{route('login.submit')}}" method="POST" class="space-y-4">
                 @csrf
                 
                 <!-- Mobile Number / License No -->

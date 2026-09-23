@@ -31,11 +31,6 @@ class FrontendController extends Controller
         return view('Frontend.faq');
     }
 
-    public function driversRegister()
-    {
-        return view('Frontend.register');
-    }
-
     public function driversLogin()
     {
         return view('Frontend.login');
