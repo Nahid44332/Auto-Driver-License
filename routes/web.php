@@ -3,6 +3,7 @@
 use App\Http\Controllers\backend\AdminController;
 use App\Http\Controllers\backend\DriverAuthController;
 use App\Http\Controllers\Driver\DriverDashboardController;
+use App\Http\Controllers\Driver\LicenseController;
 use App\Http\Controllers\FrontendController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -43,6 +44,12 @@ Route::prefix('driver')->name('driver.')->middleware(['auth:driver'])->group(fun
     Route::get('profile', [DriverDashboardController::class, 'profile'])->name('profile');
     Route::post('profile/update', [DriverDashboardController::class, 'profileUpdate'])->name('profile.update');
     Route::post('logout', [DriverAuthController::class, 'logout'])->name('logout');
+    //License Apply....
+    Route::get('license/apply', [LicenseController::class, 'showApplyForm'])->name('license.apply');
+    Route::post('license/send-otp', [LicenseController::class, 'sendOtp'])->name('license.send.otp');
+    Route::post('license/verify-otp', [LicenseController::class, 'verifyOtp'])->name('license.verify.otp');
+    Route::post('license/submit-payment', [LicenseController::class, 'submitPayment'])->name('license.submit.payment');
+    Route::get('license/download-pdf', [LicenseController::class, 'downloadPdf'])->name('license.download.pdf');
 });
 
 
